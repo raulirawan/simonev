@@ -34,16 +34,17 @@
         </div>
 
         <div class="form-group">
-            <label for="basicInput">Golongan</label>
-            <select name="golongan_id" id="golongan_id" class="form-control @error('golongan_id') is-invalid @enderror">
-                <option value="">Pilih Golongan</option>
-                @foreach (App\Golongan::all() as $golongan)
-                    <option
-                        value="{{ $golongan->id }}" {{ isset($pegawai) ? ($golongan->id == $pegawai->golongan_id ? 'selected' : '') : '' }}>
-                        {{ $golongan->nama_golongan }}</option>
+            <label for="basicInput">Sub Bagian</label>
+            <select name="sub_bagian_id" id="sub_bagian_id"
+                class="form-control @error('sub_bagian_id') is-invalid @enderror">
+                <option value="">Pilih Sub Bagian</option>
+                @foreach (App\SubBagian::all() as $bagian)
+                    <option value="{{ $bagian->id }}"
+                        {{ isset($pegawai) ? ($bagian->id == $pegawai->sub_bagian_id ? 'selected' : '') : '' }}>
+                        {{ $bagian->nama_sub_bagian }}</option>
                 @endforeach
             </select>
-            @error('golongan_id')
+            @error('sub_bagian_id')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

@@ -23,7 +23,10 @@ class LaporanExport implements FromCollection, WithHeadings, WithMapping
      */
     public function collection()
     {
-        $laporan = Laporan::whereBetween('tanggal_status_terakhir', [$this->from_date, $this->to_date])->get();
+        $laporan = Laporan::
+                whereBetween('tanggal_status_terakhir', [$this->from_date, $this->to_date])
+                ->where('status', 1)
+                ->get();
         return $laporan;
     }
 

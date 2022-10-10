@@ -42,7 +42,8 @@
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold">Total Pekerjaan</h6>
-                                        <h6 class="font-extrabold mb-0">20</h6>
+                                        <h6 class="font-extrabold mb-0">
+                                            {{ App\Laporan::where('karyawan_id', Auth::user()->id)->count() }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +60,9 @@
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold">Data Pekerjaan Pending</h6>
-                                        <h6 class="font-extrabold mb-0">32</h6>
+                                        <h6 class="font-extrabold mb-0">
+                                            {{ App\Laporan::where('karyawan_id', Auth::user()->id)->where('status', 0)->count() }}
+                                        </h6>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +79,9 @@
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold">Data Pekerjaan Selesai</h6>
-                                        <h6 class="font-extrabold mb-0">55</h6>
+                                        <h6 class="font-extrabold mb-0">
+                                            {{ App\Laporan::where('karyawan_id', Auth::user()->id)->where('status', 1)->count() }}
+                                        </h6>
                                     </div>
                                 </div>
                             </div>

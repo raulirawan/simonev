@@ -31,7 +31,6 @@ class LaporanImport implements ToCollection, WithHeadingRow
     {
         $data = collect($rows)->map(function ($item, $key) {
             return [
-                'karyawan_id' => '2',
                 'kode_laporan' => $item['kode_laporan'],
                 'deskripsi' => $item['deskripsi'],
                 'kategori' => $item['kategori'],
@@ -39,6 +38,7 @@ class LaporanImport implements ToCollection, WithHeadingRow
                 'skpd' => $item['skpd'],
                 'tanggal_laporan' => date('Y-m-d H:i:s', strtotime($item['tanggal_laporan'])),
                 'tanggal_status_terakhir' => date('Y-m-d H:i:s', strtotime($item['tanggal_status_terakhir'])),
+                'total_tl_ditolak' => $item['total_tl_ditolak'],
             ];
             return;
         })->all();
@@ -48,11 +48,15 @@ class LaporanImport implements ToCollection, WithHeadingRow
         $from = $this->from_date . ' 00:00:00';
         $to = $this->to_date . ' 23:59:59';
 
-        $dataLaporan = $dataMap->whereBetween('tanggal_status_terakhir', [$from, $to])->whereNotNull('skpd');
+        $dataLaporan = $dataMap->whereBetween('tanggal_status_terakhir', [$from, $to])
+            ->whereNotNull('skpd')
+            ->where('total_tl_ditolak', '>', 0);
+
+
         foreach ($dataLaporan as $row) {
             $golongan = Golongan::where('nama_golongan', $row['skpd'])->first() ?? NULL;
             Laporan::create([
-                'karyawan_id' => ($golongan) ? User::where('golongan_id', $golongan->id)->first()->id ?? NULL : NULL,
+                'karyawan_id' => ($golongan) ? User::where('sub_bagian_id', $golongan->sub_bagian_id)->first()->id ?? NULL : NULL,
                 'kode_laporan' => $row['kode_laporan'],
                 'deskripsi' => $row['deskripsi'],
                 'kategori' => $row['kategori'],

@@ -20,6 +20,7 @@ class GolonganController extends Controller
     {
         if (request()->ajax()) {
             $query = Golongan::query();
+            $query->with(['subBagian']);
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
@@ -27,6 +28,9 @@ class GolonganController extends Controller
                     class="btn btn-info btn-sm">Edit</a>
                 <button id="delete-button" data-id="' . $item->id . '"  class="btn btn-danger btn-sm">Hapus</button>
                     ';
+                })
+                ->addColumn('subBagian', function ($item) {
+                    return $item->subBagian->nama_sub_bagian;
                 })
                 ->rawColumns(['action'])
                 ->make();
@@ -55,6 +59,7 @@ class GolonganController extends Controller
     {
         $request->validate([
             'nama_golongan' => 'required|unique:golongan,nama_golongan',
+            'sub_bagian_id' => 'required|exists:sub_bagian,id',
         ]);
         $data = $request->all();
 
@@ -97,7 +102,8 @@ class GolonganController extends Controller
     public function update(Request $request, Golongan $golongan)
     {
         $request->validate([
-            'nama_golongan' => 'required|unique:golongan,nama_golongan,' . $golongan->id . ''
+            'nama_golongan' => 'required|unique:golongan,nama_golongan,' . $golongan->id . '',
+            'sub_bagian_id' => 'required|exists:sub_bagian,id',
         ]);
 
         if ($golongan->update($request->all())) {

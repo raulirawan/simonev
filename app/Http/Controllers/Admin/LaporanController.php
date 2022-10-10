@@ -62,7 +62,7 @@ class LaporanController extends Controller
     public function import(Request $request)
     {
         try {
-            $excel = Excel::export(new LaporanExport($request->from_date, $request->to_date));
+            $excel = Excel::import(new LaporanImport($request->from_date, $request->to_date), $request->file('file_excel'));
             if ($excel) {
                 Alert::success('Success', 'Data Berhasil di Import');
                 return redirect()->route('admin.laporan.index');

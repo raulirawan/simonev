@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Halaman Data Golongan')
+@section('title', 'Halaman Data Sub Bagian')
 
 @section('content')
     <div class="page-heading">
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Data Golongan</h3>
+                    <h3>Data Sub Bagian</h3>
 
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
@@ -17,7 +17,7 @@
                                 <a href="{{ route('admin.dashboard.index') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Form Edit Data Golongan
+                                Form Edit Data Sub Bagian
                             </li>
                         </ol>
                     </nav>
@@ -29,15 +29,15 @@
         <section class="section">
             <div class="card">
 
-                <div class="card-header">Form Tambah Golongan</div>
+                <div class="card-header">Form Tambah Sub Bagian</div>
                 <div class="card-body">
-                    <form action="{{ route('admin.golongan.update', $golongan->id) }}" id="form" method="post"
+                    <form action="{{ route('admin.sub-bagian.update', $subBagian->id) }}" id="form" method="post"
                         enctype="multipart/form-data">
                         <input type="hidden" name="event" id="event" value="edit">
-                        <input type="hidden" name="id" id="id" value="{{ $golongan->id }}">
+                        <input type="hidden" name="id" id="id" value="{{ $subBagian->id }}">
                         @csrf
                         @method('PUT')
-                        @include('admin.golongan.form')
+                        @include('admin.sub-bagian.form')
                     </form>
                 </div>
             </div>
@@ -73,13 +73,9 @@
             });
             $("#form").validate({
                 rules: {
-                    nama_golongan: {
+                    nama_sub bagian: {
                         required: true,
                         minlength: 3,
-                    },
-                    sub_bagian_id: {
-                        required: true,
-                        digits: true,
                     },
 
 

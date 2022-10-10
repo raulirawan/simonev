@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Halaman Data Pegawai')
+@section('title', 'Halaman Data Sub Bagian')
 
 @section('content')
     <div class="page-heading">
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Data Pegawai</h3>
+                    <h3>Data Sub Bagian</h3>
 
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
@@ -17,7 +17,7 @@
                                 <a href="{{ route('admin.dashboard.index') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Data Pegawai
+                                Data Sub Bagian
                             </li>
                         </ol>
                     </nav>
@@ -29,10 +29,10 @@
         <section class="section">
             <div class="card">
 
-                <div class="card-header">Tabel Pegawai</div>
+                <div class="card-header">Tabel Sub Bagian</div>
                 <div class="card-body">
-                    <a href="{{ route('admin.pegawai.create') }}" class="btn btn-success mb-3">
-                        Tambah Pegawai
+                    <a href="{{ route('admin.sub-bagian.create') }}" class="btn btn-success mb-3">
+                        Tambah Sub Bagian
                     </a>
 
                     <!--Basic Modal -->
@@ -42,9 +42,7 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%">No</th>
-                                    <th>Nama</th>
-                                    <th>Email</th>
-                                    <th>Sub Bagian</th>
+                                    <th>Nama Sub Bagian</th>
                                     <th style="width: 15%">Aksi</th>
                                 </tr>
                             </thead>
@@ -54,9 +52,9 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama_wisata }}</td>
                                         <td>
-                                            <a href="{{ route('pegawai.edit', $item->id) }}"
+                                            <a href="{{ route('sub bagian.edit', $item->id) }}"
                                                 class="btn btn-info btn-sm">Edit</a>
-                                            <a href="{{ route('pegawai.delete', $item->id) }}"
+                                            <a href="{{ route('sub bagian.delete', $item->id) }}"
                                                 onclick="return confirm('Yakin ?')" class="btn btn-danger btn-sm">Hapus</a>
                                         </td>
                                     </tr>
@@ -90,7 +88,7 @@
                     ordering: true,
                     responsive: true,
                     ajax: {
-                        url: `${window.location.origin}/admin/pegawai`,
+                        url: `${window.location.origin}/admin/sub-bagian`,
                         type: 'GET',
                     },
                     columns: [{
@@ -98,16 +96,8 @@
                             name: 'id'
                         },
                         {
-                            data: 'name',
-                            name: 'name'
-                        },
-                        {
-                            data: 'email',
-                            name: 'email'
-                        },
-                        {
-                            data: 'subBagian',
-                            name: 'subBagian'
+                            data: 'nama_sub_bagian',
+                            name: 'nama_sub_bagian'
                         },
                         {
                             data: 'action',
@@ -135,7 +125,7 @@
                         if (result.isConfirmed) {
                             $.ajax({
                                 type: "POST",
-                                url: `${window.location.origin}/admin/pegawai/${id}`,
+                                url: `${window.location.origin}/admin/sub bagian/${id}`,
                                 type: 'DELETE',
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

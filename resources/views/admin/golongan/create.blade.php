@@ -76,6 +76,10 @@
                             required: true,
                             minlength: 3,
                         },
+                        sub_bagian_id: {
+                            required: true,
+                            digits: true,
+                        },
                     }
 
 

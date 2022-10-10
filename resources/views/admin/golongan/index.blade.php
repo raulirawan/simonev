@@ -43,6 +43,7 @@
                                 <tr>
                                     <th style="width: 5%">No</th>
                                     <th>Nama Golongan</th>
+                                    <th>Nama Sub Bagian</th>
                                     <th style="width: 15%">Aksi</th>
                                 </tr>
                             </thead>
@@ -98,6 +99,10 @@
                         {
                             data: 'nama_golongan',
                             name: 'nama_golongan'
+                        },
+                        {
+                            data: 'subBagian',
+                            name: 'subBagian'
                         },
                         {
                             data: 'action',

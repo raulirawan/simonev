@@ -82,10 +82,9 @@
                         email: true,
                     },
                     password: {
-                        required: true,
                         minlength: 6,
                     },
-                    golongan_id: {
+                    sub_bagian_id: {
                         required: true,
                         digits: true,
                     },

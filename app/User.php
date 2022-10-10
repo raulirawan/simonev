@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'golongan_id', 'roles'
+        'name', 'email', 'password', 'sub_bagian_id', 'roles'
     ];
 
     /**
@@ -37,8 +37,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function golongan()
+    public function subBagian()
     {
-        return $this->belongsTo(Golongan::class, 'golongan_id', 'id');
+        return $this->belongsTo(SubBagian::class, 'sub_bagian_id', 'id');
     }
 }

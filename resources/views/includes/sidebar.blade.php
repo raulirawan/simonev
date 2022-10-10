@@ -71,6 +71,9 @@
                         </a>
                         <ul class="submenu">
                             <li class="submenu-item ">
+                                <a href="{{ route('admin.sub-bagian.index') }}">Sub Bagian</a>
+                            </li>
+                            <li class="submenu-item ">
                                 <a href="{{ route('admin.golongan.index') }}">Golongan</a>
                             </li>
                             <li class="submenu-item ">
@@ -105,10 +108,10 @@
                         </a>
                         <ul class="submenu">
                             <li class="submenu-item ">
-                                <a href="#">Pekerjaan Pending</a>
+                                <a href="{{ route('pekerjaan.pending.index') }}">Pekerjaan Pending</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="#">Pekerjaan Selesai</a>
+                                <a href="{{ route('pekerjaan.selesai.index') }}">Pekerjaan Selesai</a>
                             </li>
                         </ul>
                     </li>

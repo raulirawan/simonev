@@ -12,7 +12,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Data Laporan</h3>
+                    <h3>Data Pekerjaan</h3>
 
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
@@ -22,7 +22,7 @@
                                 <a href="{{ route('admin.dashboard.index') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Data Laporan
+                                Data Pekerjaan Pending
                             </li>
                         </ol>
                     </nav>
@@ -36,12 +36,6 @@
 
                 <div class="card-header">Tabel Laporan</div>
                 <div class="card-body">
-                    <button class="btn btn-success mb-3 btn-sm" data-bs-toggle="modal" data-bs-target="#modal-import">
-                        Import Laporan
-                    </button>
-                    <button href="#" class="btn btn-primary mb-3 btn-sm" data-bs-toggle="modal" data-bs-target="#modal-export">
-                        Export Laporan
-                    </button>
 
                     <!--Basic Modal -->
 
@@ -70,70 +64,19 @@
         <!-- Basic Tables end -->
     </div>
 
-    {{-- modal import --}}
 
-    <div class="modal fade text-left" id="modal-import" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <form action="{{ route('admin.laporan.import') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="myModalLabel1">Form Import Data Laporan</h5>
-                        <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
-                            <i data-feather="x"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="basicInput">Dari Tanggal</label>
-                                    <input type="date" name="from_date" class="form-control" value="{{ date('Y-m-d') }}"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="basicInput">Sampai Tanggal</label>
-                                    <input type="date" name="to_date" class="form-control"
-                                        value="{{ date('Y-m-d', strtotime('+1 days')) }}" required>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="basicInput">File Excel</label>
-                                    <input type="file" class="form-control" name="file_excel" required>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class=" btn btn-secondary" data-bs-dismiss="modal">
-                            <i class="bx bx-x d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Close</span>
-                        </button>
-                        <button type="submit" class="btn btn-primary ml-1">
-                            <i class="bx bx-check d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Import</span>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
 
 
     {{-- modal export --}}
 
-    <div class="modal fade text-left" id="modal-export" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+    <div class="modal fade text-left" id="modal-proses" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <form action="{{ route('admin.laporan.export') }}" method="POST" enctype="multipart/form-data">
+            <form action="#" id="form-modal-proses" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="myModalLabel1">Form Export Data Laporan</h5>
+                        <h5 class="modal-title" id="label-proses">Form Proses Data Laporan</h5>
                         <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
                             <i data-feather="x"></i>
                         </button>
@@ -142,16 +85,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="basicInput">Dari Tanggal</label>
-                                    <input type="date" name="from_date" class="form-control"
-                                        value="{{ date('Y-m-d') }}" required>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="basicInput">Sampai Tanggal</label>
-                                    <input type="date" name="to_date" class="form-control"
-                                        value="{{ date('Y-m-d', strtotime('+1 days')) }}" required>
+                                    <label for="basicInput">Catatan</label>
+                                    <textarea name="catatan" class="form-control"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -163,7 +98,7 @@
                         </button>
                         <button type="submit" class="btn btn-primary ml-1">
                             <i class="bx bx-check d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Export</span>
+                            <span class="d-none d-sm-block">Proses</span>
                         </button>
                     </div>
                 </div>
@@ -270,7 +205,7 @@
                     ordering: true,
                     responsive: true,
                     ajax: {
-                        url: `${window.location.origin}/admin/laporan`,
+                        url: `${window.location.origin}/pekerjaan/pending`,
                         type: 'GET',
                     },
                     columns: [{
@@ -310,6 +245,34 @@
 
                 });
 
+                $.validator.setDefaults({
+                    highlight: function(element) {
+                        $(element).addClass("is-invalid").removeClass("is-valid");
+                    },
+                    unhighlight: function(element) {
+                        $(element).addClass("is-valid").removeClass("is-invalid");
+                    },
+
+                    //add
+                    errorElement: 'span',
+                    errorClass: 'text-danger',
+                    errorPlacement: function(error, element) {
+                        if (element.parent('.form-control').length) {
+                            error.insertAfter(element.parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    }
+                    // end add
+                });
+                $("#form-modal-proses").validate({
+                    rules: {
+                        catatan: {
+                            required: true,
+                            minlength: 3,
+                        },
+                    }
+                });
                 $(document).on('click', '#detail', function() {
                     $('#status').empty();
 
@@ -325,7 +288,6 @@
                     var status = $(this).data('status');
 
 
-
                     $('#tanggal_laporan').text(tanggal_laporan);
                     $('#tanggal_status_terakhir').text(tanggal_status_terakhir);
                     $('#pegawai').text(pegawai);
@@ -338,55 +300,13 @@
                     $('#status').append(statusLaporan(status));
                 });
 
-                $(document).on('click', '#delete-button', function(e) {
-                    e.preventDefault();
+                $(document).on('click', '#btn-proses', function() {
                     var id = $(this).data('id');
-                    Swal.fire({
-                        title: 'Are you sure?',
-                        text: "You won't be able to revert this!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, delete it!'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            $.ajax({
-                                type: "POST",
-                                url: `${window.location.origin}/admin/laporan/${id}`,
-                                type: 'DELETE',
-                                headers: {
-                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                },
-                                success: function(data) {
-                                    if (data.status == 'success') {
-                                        Swal.fire(
-                                            'Deleted!',
-                                            'Your file has been deleted.',
-                                            'success'
-                                        )
-                                        parent.$("#table-data").DataTable().ajax.reload();
-                                    } else {
-                                        Swal.fire(
-                                            'Failed!',
-                                            'Your file has fail Delete.',
-                                            'error'
-                                        )
-                                    }
-                                },
-                                error: function(xhr, ajaxOptions, thrownError) {
-                                    Swal.fire(
-                                        'Failed!',
-                                        'Your file has fail Delete.',
-                                        'error'
-                                    )
-                                },
+                    var kode_laporan = $(this).data('kode_laporan');
 
-                            });
-                        }
-                    })
+                    $('#label-proses').text(`Form Proses Data Laporan #${kode_laporan}`);
+                    $('#form-modal-proses').attr('action', '/pekerjaan/proses/' + id);
                 });
-
             });
         </script>
     @endpush

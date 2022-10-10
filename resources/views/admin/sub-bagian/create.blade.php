@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Halaman Data Pegawai')
+@section('title', 'Halaman Data Sub Bagian')
 
 @section('content')
     <div class="page-heading">
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Data Pegawai</h3>
+                    <h3>Data Sub Bagian</h3>
 
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
@@ -17,7 +17,7 @@
                                 <a href="{{ route('admin.dashboard.index') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Form Create Data Pegawai
+                                Form Create Data Sub Bagian
                             </li>
                         </ol>
                     </nav>
@@ -29,13 +29,13 @@
         <section class="section">
             <div class="card">
 
-                <div class="card-header">Form Tambah Pegawai</div>
+                <div class="card-header">Form Tambah Sub Bagian</div>
                 <div class="card-body">
-                    <form action="{{ route('admin.pegawai.store') }}" id="form" method="post"
+                    <form action="{{ route('admin.sub-bagian.store') }}" id="form" method="post"
                         enctype="multipart/form-data">
                         <input type="hidden" name="event" value="create">
                         @csrf
-                        @include('admin.pegawai.form')
+                        @include('admin.sub-bagian.form')
                     </form>
                 </div>
             </div>
@@ -72,21 +72,9 @@
                 });
                 $("#form").validate({
                     rules: {
-                        name: {
+                        nama_sub_bagian: {
                             required: true,
                             minlength: 3,
-                        },
-                        email: {
-                            required: true,
-                            email: true,
-                        },
-                        password: {
-                            required: true,
-                            minlength: 6,
-                        },
-                        sub_bagian_id: {
-                            required: true,
-                            digits: true,
                         },
                     }
 
