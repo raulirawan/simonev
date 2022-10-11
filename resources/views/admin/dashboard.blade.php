@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold">Pegawai</h6>
-                                        <h6 class="font-extrabold mb-0">20</h6>
+                                        <h6 class="font-extrabold mb-0">{{ App\User::where('roles','PEGAWAI')->count() }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -58,8 +58,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">Golongan</h6>
-                                        <h6 class="font-extrabold mb-0">32</h6>
+                                        <h6 class="text-muted font-semibold">Skpd</h6>
+                                        <h6 class="font-extrabold mb-0">{{ App\SubBagian::count() }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold">Laporan</h6>
-                                        <h6 class="font-extrabold mb-0">55</h6>
+                                        <h6 class="font-extrabold mb-0">{{ App\Laporan::count() }}</h6>
                                     </div>
                                 </div>
                             </div>

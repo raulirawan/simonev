@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Halaman Data Golongan')
+@section('title', 'Halaman Data Skpd')
 
 @section('content')
     <div class="page-heading">
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Data Golongan</h3>
+                    <h3>Data Skpd</h3>
 
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
@@ -17,7 +17,7 @@
                                 <a href="{{ route('admin.dashboard.index') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Data Golongan
+                                Data Skpd
                             </li>
                         </ol>
                     </nav>
@@ -29,10 +29,10 @@
         <section class="section">
             <div class="card">
 
-                <div class="card-header">Tabel Golongan</div>
+                <div class="card-header">Tabel Skpd</div>
                 <div class="card-body">
                     <a href="{{ route('admin.golongan.create') }}" class="btn btn-success mb-3">
-                        Tambah Golongan
+                        Tambah Skpd
                     </a>
 
                     <!--Basic Modal -->
@@ -42,7 +42,7 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%">No</th>
-                                    <th>Nama Golongan</th>
+                                    <th>Nama Skpd</th>
                                     <th>Nama Sub Bagian</th>
                                     <th style="width: 15%">Aksi</th>
                                 </tr>
@@ -94,7 +94,10 @@
                     },
                     columns: [{
                             data: 'id',
-                            name: 'id'
+                            name: 'id',
+                            render: function(data, type, row, meta) {
+                                return meta.row + meta.settings._iDisplayStart + 1;
+                            }
                         },
                         {
                             data: 'nama_golongan',

@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group">
-            <label for="basicInput">Nama Golongan</label>
+            <label for="basicInput">Nama Skpd</label>
             <input type="text" class="form-control @error('nama_golongan') is-invalid @enderror"
                 value="{{ old('nama_golongan', $golongan->nama_golongan ?? '') }}" name="nama_golongan"
                 placeholder="Masukan Nama Golongan">

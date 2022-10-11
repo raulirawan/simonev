@@ -4,7 +4,7 @@
             <label for="basicInput">Nama Sub Bagian</label>
             <input type="text" class="form-control @error('nama_sub_bagian') is-invalid @enderror"
                 value="{{ old('nama_sub_bagian', $subBagian->nama_sub_bagian ?? '') }}" name="nama_sub_bagian"
-                placeholder="Masukan Nama Golongan">
+                placeholder="Masukan Nama Sub Bagian">
             @error('nama_sub_bagian')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>

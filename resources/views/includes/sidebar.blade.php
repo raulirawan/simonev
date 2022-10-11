@@ -74,7 +74,7 @@
                                 <a href="{{ route('admin.sub-bagian.index') }}">Sub Bagian</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="{{ route('admin.golongan.index') }}">Golongan</a>
+                                <a href="{{ route('admin.golongan.index') }}">Skpd</a>
                             </li>
                             <li class="submenu-item ">
                                 <a href="{{ route('admin.pegawai.index') }}">Pegawai</a>
