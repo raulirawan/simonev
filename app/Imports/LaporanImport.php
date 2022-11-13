@@ -49,8 +49,7 @@ class LaporanImport implements ToCollection, WithHeadingRow
         $to = $this->to_date . ' 23:59:59';
 
         $dataLaporan = $dataMap->whereBetween('tanggal_status_terakhir', [$from, $to])
-            ->whereNotNull('skpd')
-            ->where('total_tl_ditolak', '>', 0);
+            ->whereNotNull('skpd');
 
 
         foreach ($dataLaporan as $row) {
@@ -62,6 +61,7 @@ class LaporanImport implements ToCollection, WithHeadingRow
                 'kategori' => $row['kategori'],
                 'kelurahan_asal' => $row['kelurahan_asal'],
                 'skpd' => $row['skpd'],
+                'status' => ($row['total_tl_ditolak'] == 0) ? 2 : 0,
                 'tanggal_laporan' => $row['tanggal_laporan'],
                 'tanggal_status_terakhir' => $row['tanggal_status_terakhir'],
             ]);

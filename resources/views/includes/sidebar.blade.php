@@ -77,7 +77,7 @@
                                 <a href="{{ route('admin.golongan.index') }}">Skpd</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="{{ route('admin.pegawai.index') }}">Pegawai</a>
+                                <a href="{{ route('admin.pegawai.index') }}">Akun Sub Bagian</a>
                             </li>
                         </ul>
                     </li>

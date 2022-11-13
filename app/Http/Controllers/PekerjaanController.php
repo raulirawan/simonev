@@ -48,9 +48,9 @@ class PekerjaanController extends Controller
                 })
                 ->addColumn('status_proses', function ($item) {
                     if ($item->status == 1) {
-                        return '<span class="badge bg-success">Proses</span>';
+                        return '<span class="badge bg-success">PROSES SELESAI</span>';
                     } else {
-                        return '<span class="badge bg-warning">Pending</span>';
+                        return '<span class="badge bg-danger">Di Tolak</span>';
                     }
                 })
                 ->addColumn('pegawai', function ($item) {
@@ -93,9 +93,9 @@ class PekerjaanController extends Controller
                 })
                 ->addColumn('status_proses', function ($item) {
                     if ($item->status == 1) {
-                        return '<span class="badge bg-success">Proses</span>';
+                        return '<span class="badge bg-success">PROSES SELESAI</span>';
                     } else {
-                        return '<span class="badge bg-warning">Pending</span>';
+                        return '<span class="badge bg-danger">Di Tolak</span>';
                     }
                 })
                 ->addColumn('pegawai', function ($item) {

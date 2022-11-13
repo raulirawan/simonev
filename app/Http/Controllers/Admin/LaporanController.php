@@ -17,7 +17,7 @@ class LaporanController extends Controller
     {
         if (request()->ajax()) {
             $query = Laporan::query();
-            $query->with(['pegawai']);
+            $query->with(['pegawai'])->where('status', 0);
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     $pegawai = $item->pegawai->name ?? 'Tidak Ada';
@@ -43,10 +43,13 @@ class LaporanController extends Controller
                     ';
                 })
                 ->addColumn('status_proses', function ($item) {
+                    if ($item->status == 2) {
+                        return '<span class="badge bg-success">SELESAI</span>';
+                    }
                     if ($item->status == 1) {
-                        return '<span class="badge bg-success">Proses</span>';
+                        return '<span class="badge bg-success">PROSES SELESAI</span>';
                     } else {
-                        return '<span class="badge bg-warning">Pending</span>';
+                        return '<span class="badge bg-danger">Di Tolak</span>';
                     }
                 })
                 ->addColumn('pegawai', function ($item) {

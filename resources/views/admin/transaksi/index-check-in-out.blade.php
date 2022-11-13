@@ -71,7 +71,7 @@
                            @elseif($item->status == 'CHECK OUT')
                                <span class="badge bg-danger">CHECK OUT</span>
                            @elseif($item->status == 'PENDING')
-                               <span class="badge bg-warning">PENDING</span>
+                               <span class="badge bg-danger">Di Tolak</span>
                            @elseif($item->status == 'SUCCESS')
                                <span class="badge bg-success">SUCCESS</span>
                            @else

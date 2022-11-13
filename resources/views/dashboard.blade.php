@@ -25,7 +25,7 @@
 }
 </style> --}}
     <div class="page-heading">
-        <h3>Data Statistik</h3>
+        <h3>Data {{ strtolower(Str::ucfirst(Auth::user()->subBagian->nama_sub_bagian)) }}</h3>
     </div>
     <div class="page-content">
         <section class="row">
@@ -41,9 +41,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">Total Pekerjaan</h6>
+                                        <h6 class="text-muted font-semibold">Total Laporan</h6>
                                         <h6 class="font-extrabold mb-0">
-                                            {{ App\Laporan::where('karyawan_id', Auth::user()->id)->count() }}</h6>
+                                            {{ App\Laporan::where('karyawan_id', Auth::user()->id)->whereIn('status',[0,1])->count() }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">Data Pekerjaan Pending</h6>
+                                        <h6 class="text-muted font-semibold">Data Tolakan Pending</h6>
                                         <h6 class="font-extrabold mb-0">
                                             {{ App\Laporan::where('karyawan_id', Auth::user()->id)->where('status', 0)->count() }}
                                         </h6>
@@ -78,7 +78,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">Data Pekerjaan Selesai</h6>
+                                        <h6 class="text-muted font-semibold">Data Tolakan Selesai</h6>
                                         <h6 class="font-extrabold mb-0">
                                             {{ App\Laporan::where('karyawan_id', Auth::user()->id)->where('status', 1)->count() }}
                                         </h6>

@@ -259,9 +259,9 @@
             $(document).ready(function() {
                 function statusLaporan(status) {
                     if (status == 1) {
-                        return '<span class="badge bg-success">PROSES</span>';
+                        return '<span class="badge bg-success">PROSES SELESAI</span>';
                     } else {
-                        return '<span class="badge bg-warning">PENDING</span>';
+                        return '<span class="badge bg-danger">Di Tolak</span>';
                     }
                 }
                 var datatable = $('#table-data').DataTable({

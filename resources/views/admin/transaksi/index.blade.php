@@ -206,7 +206,7 @@ aria-labelledby="myModalLabel1" aria-hidden="true">
                 } else if (status == 'CHECK OUT') {
                     return '<span class="badge bg-danger">CHECK OUT</span>';
                 } else if (status == 'PENDING') {
-                    return '<span class="badge bg-warning">PENDING</span>';
+                    return '<span class="badge bg-danger">Di Tolak</span>';
                 } else if (status == 'SUCCESS') {
                     return '<span class="badge bg-success">SUCCESS</span>';
                 } else {
